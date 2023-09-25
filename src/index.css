@@ -1,13 +1,30 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+fieldset {
+  border: 1px solid #000;
+  /* Style de la bordure */
+  text-align: center;
+  /* Centrage horizontal du contenu */
+  padding: 20px;
+  /* Espacement intérieur de la bordure */
+  margin-top: 50px;
+  /* Espacement supérieur pour centrer la bordure */
+  background-image: url('../public/paper.jpg');
+  /* background-size: cover; */
+  background-repeat: repeat;
+  background-attachment: fixed;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+fieldset h1 {
+  background-color: rgb(49, 49, 49);
+  /* Fond blanc pour le titre */
+  display: inline-block;
+  /* Pour que le titre occupe tout l'espace disponible */
+  padding: 0 20px;
+  /* Espacement intérieur du titre */
+  position: relative;
+  /* Position relative pour permettre le débordement sur la bordure */
+  top: -60px;
+  /* Ajustez la position verticale pour recouvrir partiellement la bordure */
+  color: white;
+  border: solid 4px rgb(124, 124, 124);
 }
