@@ -29,7 +29,7 @@ function Ajouter() {
 
     try {
       // Envoyez les données du formulaire au serveur
-      await axios.post('/api/candidatures', formData);
+      await axios.post('https://mescandidaturesback-production.up.railway.app/api/candidatures', formData);
 
       // Effacez le formulaire après l'enregistrement
       setFormData({
