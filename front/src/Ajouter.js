@@ -55,7 +55,7 @@ function Ajouter() {
 
   return (
     <div>
-      <h1>Formulaire de Candidature</h1>
+      <h1>Formulaire de Candidature test</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="nomEntreprise">Nom de l'entreprise :</label>
