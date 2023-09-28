@@ -33,7 +33,7 @@ function AjouterSuivi() {
       console.log(formData)
       // Envoyez les données du formulaire au serveur
       await axios.post(
-        "http://localhost:7973/api/suivi-create",
+        "https://mescandidaturesback-production.up.railway.app/api/suivi-create",
         requestData
       );
   
