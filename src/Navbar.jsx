@@ -49,7 +49,7 @@ function Navbar() {
           </div>
         </li> */}
           </ul>
-          <form className="d-flex">
+          {/* <form className="d-flex">
             <input
               className="form-control bg-light text-black me-sm-2"
               type="search"
@@ -58,7 +58,7 @@ function Navbar() {
             <a className="btn btn-secondary my-2 my-sm-0" type="submit">
             <i className="fa-solid fa-magnifying-glass"></i>
             </a>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>
