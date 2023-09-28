@@ -7,8 +7,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.0",
+    "bootstrap": "^5.3.2",
     "mongoose": "^7.5.2",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.9.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
@@ -20,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://mescandidaturesback-production.up.railway.app/",
+  "proxy": "https://localhost:7973",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import { Alert } from "react-bootstrap";
 
-function Ajouter() {
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
+function Modifier() {
+  const { _id } = useParams(); // Utilisez _id au lieu de id
+
   const [formData, setFormData] = useState({
     nomEntreprise: "",
     coordonnees: "",
@@ -12,10 +24,43 @@ function Ajouter() {
     lieu: "",
     intitulePoste: "",
     descriptionPoste: "",
-    dateCandidature: "",
-    dateRefus: "",
-    dateRelance: "",
+    dateCandidature: "", // Date de candidature initialisée à une chaîne vide
+    dateRefus: "", // Date de refus initialisée à une chaîne vide
+    dateRelance: "", // Date de relance initialisée à une chaîne vide
   });
+
+  const [originalCandidatureData, setOriginalCandidatureData] = useState({}); // Stockez les données de candidature d'origine ici
+
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false); // Nouvelle variable d'état
+
+  const navigate = useNavigate(); // Utilisez useNavigate pour obtenir la fonction de navigation
+
+  useEffect(() => {
+    // Récupérez les données de la candidature à partir de l'API
+    axios
+      .get(`http://localhost:7973/api/candidatures/${_id}`)
+      .then((response) => {
+        const candidatureData = response.data;
+        setOriginalCandidatureData(candidatureData); // Stockez les données de candidature d'origine
+        setFormData({
+          nomEntreprise: candidatureData.nomEntreprise,
+          coordonnees: candidatureData.coordonnees,
+          provenanceAnnonce: candidatureData.provenanceAnnonce,
+          technos: candidatureData.technos,
+          reponseEntretienRefus: candidatureData.reponseEntretienRefus,
+          lieu: candidatureData.lieu,
+          intitulePoste: candidatureData.intitulePoste,
+          descriptionPoste: candidatureData.descriptionPoste,
+          dateCandidature: formatDate(candidatureData.dateCandidature),
+          dateRefus: formatDate(candidatureData.dateRefus),
+          dateRelance: formatDate(candidatureData.dateRelance),
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        // Gérez les erreurs ici
+      });
+  }, [_id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,28 +74,41 @@ function Ajouter() {
     e.preventDefault();
 
     try {
-      // Envoyez les données du formulaire au serveur
-      await axios.post(
-        "https://mescandidaturesback-production.up.railway.app/api/candidatures",
-        formData
+      // Créez un objet contenant les données à envoyer au serveur
+      const updatedData = {
+        nomEntreprise: formData.nomEntreprise,
+        coordonnees: formData.coordonnees,
+        provenanceAnnonce: formData.provenanceAnnonce,
+        technos: formData.technos,
+        reponseEntretienRefus: formData.reponseEntretienRefus,
+        lieu: formData.lieu,
+        intitulePoste: formData.intitulePoste,
+        descriptionPoste: formData.descriptionPoste,
+      };
+
+      // Vérifiez si la date de relance a été modifiée
+      if (formData.dateRelance !== formatDate(originalCandidatureData.dateRelance)) {
+        updatedData.dateRelance = new Date(formData.dateRelance);
+      }
+
+      // Vérifiez si la date de refus a été modifiée
+      if (formData.dateRefus !== formatDate(originalCandidatureData.dateRefus)) {
+        updatedData.dateRefus = new Date(formData.dateRefus);
+      }
+
+      // Envoyez les données du formulaire au serveur pour mettre à jour la candidature
+      await axios.put(
+        `http://localhost:7973/api/candidatures/modifier/${_id}`,
+        updatedData
       );
 
-      // Effacez le formulaire après l'enregistrement
-      setFormData({
-        nomEntreprise: "",
-        coordonnees: "",
-        provenanceAnnonce: "",
-        technos: "",
-        reponseEntretienRefus: "",
-        lieu: "",
-        intitulePoste: "",
-        descriptionPoste: "",
-        dateCandidature: "",
-        dateRefus: "",
-        dateRelance: "",
-      });
+      // Affichez l'alerte de réussite
+      setShowSuccessAlert(true);
 
-      // Ajoutez ici une logique de confirmation ou de redirection
+      // Redirigez l'utilisateur vers la page de liste des candidatures après 2 secondes
+      setTimeout(() => {
+        navigate("/");
+      }, 2000); // Redirection après 2 secondes
     } catch (error) {
       console.error(error);
       // Gérez les erreurs de requête ici
@@ -61,9 +119,18 @@ function Ajouter() {
     <>
       <Navbar />
       <div className="container py-4">
+        <Alert
+          variant="success"
+          show={showSuccessAlert}
+          onClose={() => setShowSuccessAlert(false)}
+          dismissible
+        >
+          Candidature modifiée avec succès ! Redirection vers la page
+          d'accueil...
+        </Alert>
         <form onSubmit={handleSubmit}>
-          <fieldset className="border">
-            <h1 className="text-center py-3">Formulaire de Candidature</h1>
+          <div className="home">
+            <h1 className="text-center py-3">Modifier une Candidature</h1>
             <div className="row">
               <div className="col-md-6">
                 <div className="form-floating mb-3">
@@ -195,9 +262,7 @@ function Ajouter() {
             <div className="row">
               <div className="col-md-4">
                 <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    Date de candidature
-                  </span>
+                  <span className="input-group-text">Date de candidature</span>
                   <input
                     type="date"
                     className="form-control"
@@ -205,6 +270,7 @@ function Ajouter() {
                     name="dateCandidature"
                     value={formData.dateCandidature}
                     onChange={handleChange}
+                    disabled // Désactivez l'édition de la date de candidature
                   />
                 </div>
               </div>
@@ -225,7 +291,9 @@ function Ajouter() {
               </div>
               <div className="col-md-4">
                 <div className="input-group mb-3">
-                  <span className="input-group-text bg-danger">Date de refus</span>
+                  <span className="input-group-text bg-danger">
+                    Date de refus
+                  </span>
                   <input
                     type="date"
                     className="form-control"
@@ -240,14 +308,14 @@ function Ajouter() {
 
             <div>
               <button type="submit" className="btn btn-primary btn-lg">
-                Ajouter Candidature
+                Modifier Candidature
               </button>
             </div>
-          </fieldset>
+          </div>
         </form>
       </div>
     </>
   );
 }
 
-export default Ajouter;
+export default Modifier;

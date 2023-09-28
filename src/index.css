@@ -1,5 +1,5 @@
-fieldset {
-  border: 1px solid #000;
+.home {
+  border: 3px solid #000;
   /* Style de la bordure */
   text-align: center;
   /* Centrage horizontal du contenu */
@@ -14,8 +14,8 @@ fieldset {
 
 }
 
-fieldset h1 {
-  background-color: rgb(49, 49, 49);
+.home h1 {
+  background-color: rgb(14, 49, 0);
   /* Fond blanc pour le titre */
   display: inline-block;
   /* Pour que le titre occupe tout l'espace disponible */
@@ -26,5 +26,29 @@ fieldset h1 {
   top: -60px;
   /* Ajustez la position verticale pour recouvrir partiellement la bordure */
   color: white;
-  border: solid 4px rgb(124, 124, 124);
+  border: solid 4px rgb(0, 0, 0);
+}
+.navbar-brand
+{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+table{
+  border: 5px solid #000;
+}
+
+.detail_candidature {
+  border: 3px solid #000;
+  /* Style de la bordure */
+  /* Centrage horizontal du contenu */
+  padding: 20px;
+  /* Espacement intérieur de la bordure */
+  margin-top: 50px;
+  /* Espacement supérieur pour centrer la bordure */
+  background-image: url('../public/paper.jpg');
+  /* background-size: cover; */
+  background-repeat: repeat;
+  background-attachment: fixed;
+
 }
