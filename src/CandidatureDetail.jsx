@@ -18,7 +18,7 @@ function CandidatureDetail() {
 
   useEffect(() => {
     // Utilisez une requête axios pour récupérer les détails de la candidature par ID
-    axios.get(`http://localhost:7973/api/candidatures/${_id}`)
+    axios.get(`https://mescandidaturesback-production.up.railway.app/api/candidatures/${_id}`)
       .then((response) => {
         setCandidature(response.data);
         console.log(response.data);

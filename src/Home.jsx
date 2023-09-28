@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom";
 
 function formatDate(dateString) {
   if (dateString) {
@@ -19,13 +18,13 @@ function Home() {
 
   useEffect(() => {
     // Utilisez une requête axios pour récupérer toutes les candidatures et les suivis depuis votre serveur
-    axios.get("http://localhost:7973/").then((response) => {
+    axios.get("https://mescandidaturesback-production.up.railway.app/").then((response) => {
       const candidatures = response.data.map((candidature) => ({
         type: "candidature",
         data: candidature,
       }));
 
-      axios.get("http://localhost:7973/api/suivi").then((suiviResponse) => {
+      axios.get("https://mescandidaturesback-production.up.railway.app/api/suivi").then((suiviResponse) => {
         const suivis = suiviResponse.data.map((suivi) => ({
           type: "suivi",
           data: suivi,
@@ -55,7 +54,7 @@ function Home() {
       if (data[itemId].type === "candidature") {
         axios
           .delete(
-            `http://localhost:7973/api/candidatures/supprimer/${data[itemId].data._id}`
+            `https://mescandidaturesback-production.up.railway.app/api/candidatures/supprimer/${data[itemId].data._id}`
           )
           .then((response) => {
             // Rafraîchissez la liste des données après la suppression
@@ -69,7 +68,7 @@ function Home() {
       } else if (data[itemId].type === "suivi") {
         axios
           .delete(
-            `http://localhost:7973/api/suivi/supprimer/${data[itemId].data._id}`
+            `https://mescandidaturesback-production.up.railway.app/api/suivi/supprimer/${data[itemId].data._id}`
           )
           .then((response) => {
             // Rafraîchissez la liste des données après la suppression

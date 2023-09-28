@@ -38,7 +38,7 @@ function Modifier() {
   useEffect(() => {
     // Récupérez les données de la candidature à partir de l'API
     axios
-      .get(`http://localhost:7973/api/candidatures/${_id}`)
+      .get(`https://mescandidaturesback-production.up.railway.app/api/candidatures/${_id}`)
       .then((response) => {
         const candidatureData = response.data;
         setOriginalCandidatureData(candidatureData); // Stockez les données de candidature d'origine
@@ -98,7 +98,7 @@ function Modifier() {
 
       // Envoyez les données du formulaire au serveur pour mettre à jour la candidature
       await axios.put(
-        `http://localhost:7973/api/candidatures/modifier/${_id}`,
+        `https://mescandidaturesback-production.up.railway.app/api/candidatures/modifier/${_id}`,
         updatedData
       );
 
