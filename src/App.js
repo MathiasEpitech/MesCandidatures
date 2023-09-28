@@ -11,10 +11,10 @@ function App() {
     <>
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/ajouter" element={<Ajouter />} />
-        <Route path="/candidatures/:_id" element={<CandidatureDetail />} />
-        <Route path="/candidatures/modifier/:_id" element={<Modifier />} />
-        <Route path="/ajouter_suivi" element={<AjouterSuivi />} />
+        <Route path="https://luxury-lokum-003c78.netlify.app/ajouter" element={<Ajouter />} />
+        <Route path="https://luxury-lokum-003c78.netlify.app/candidatures/:_id" element={<CandidatureDetail />} />
+        <Route path="https://luxury-lokum-003c78.netlify.app/candidatures/modifier/:_id" element={<Modifier />} />
+        <Route path="https://luxury-lokum-003c78.netlify.app/ajouter_suivi" element={<AjouterSuivi />} />
       </Routes>
     </>
   );

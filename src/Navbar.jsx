@@ -27,13 +27,13 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item px-2">
-              <a className="nav-link" href="/ajouter">
+              <a className="nav-link" href="https://luxury-lokum-003c78.netlify.app/ajouter">
                 Ajouter une Candidature
               </a>
             </li>
 
             <li className="nav-item px-2">
-              <a className="nav-link" href="/ajouter_suivi">
+              <a className="nav-link" href="https://luxury-lokum-003c78.netlify.app/ajouter_suivi">
                 Ajouter un Suivi
               </a>
             </li>

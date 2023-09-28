@@ -160,13 +160,13 @@ function Home() {
                         <div className="d-flex justify-content-center">
                           <a
                             className="btn btn-info btn-sm me-2"
-                            href={`/candidatures/${item.data._id}`}
+                            href={`https://luxury-lokum-003c78.netlify.app/candidatures/${item.data._id}`}
                           >
                             <i className="fa-solid fa-eye"></i>
                           </a>
                           <a
                             className="btn btn-warning btn-sm me-2"
-                            href={`/candidatures/modifier/${item.data._id}`}
+                            href={`https://luxury-lokum-003c78.netlify.app/candidatures/modifier/${item.data._id}`}
                           >
                             <i className="fa-solid fa-pen"></i>
                           </a>
