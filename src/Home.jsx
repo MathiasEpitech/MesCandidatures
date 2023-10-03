@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
+import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function formatDate(dateString) {
   if (dateString) {
@@ -15,6 +17,7 @@ function formatDate(dateString) {
 
 function Home() {
   const [data, setData] = useState([]);
+  
 
   useEffect(() => {
     // Utilisez une requête axios pour récupérer toutes les candidatures et les suivis depuis votre serveur
@@ -93,23 +96,23 @@ function Home() {
           </h1>
           <div className="d-flex justify-content-center p-3">
             <div className="p-2">
-              <a
-                type="button"
+              <Link
+                
                 className="btn btn-primary btn-lg"
-                href="/ajouter"
+                to = "/ajouter"
               >
                 Ajouter une Candidature
-              </a>
+              </Link>
             </div>
 
             <div className="p-2">
-              <a
-                type="button"
+              <Link
+                
                 className="btn btn-success btn-lg"
-                href="/ajouter_suivi"
+                to ="/ajouter_suivi"
               >
                 Marquer un suivi
-              </a>
+              </Link>
             </div>
           </div>
           <div className="table-responsive">
