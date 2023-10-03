@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path = "/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/ajouter" element={<Ajouter />} />
         <Route path="/candidatures/:_id" element={<CandidatureDetail />} />
         <Route path="/candidatures/modifier/:_id" element={<Modifier />} />

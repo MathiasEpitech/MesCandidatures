@@ -160,18 +160,18 @@ function Home() {
                     <td>
                       {item.type === "candidature" && (
                         <div className="d-flex justify-content-center">
-                          <a
+                          <Link
                             className="btn btn-info btn-sm me-2"
-                            href={`/candidatures/${item.data._id}`}
+                            to={`/candidatures/${item.data._id}`}
                           >
                             <i className="fa-solid fa-eye"></i>
-                          </a>
-                          <a
+                          </Link>
+                          <Link
                             className="btn btn-warning btn-sm me-2"
-                            href={`/candidatures/modifier/${item.data._id}`}
+                            to={`/candidatures/modifier/${item.data._id}`}
                           >
                             <i className="fa-solid fa-pen"></i>
-                          </a>
+                          </Link>
                           <button
                             className="btn btn-danger btn-sm me-2"
                             onClick={() => handleDelete(index)}
